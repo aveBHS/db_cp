@@ -1,0 +1,93 @@
+[
+    {
+        "model": "core.role",
+        "pk": 1,
+        "fields": {
+            "name": "Кредитный менеджер"
+        }
+    },
+    {
+        "model": "core.role",
+        "pk": 2,
+        "fields": {
+            "name": "Администратор"
+        }
+    },
+    {
+        "model": "core.producttype",
+        "pk": 1,
+        "fields": {
+            "name": "Кредит"
+        }
+    },
+    {
+        "model": "core.producttype",
+        "pk": 2,
+        "fields": {
+            "name": "Депозит"
+        }
+    },
+    {
+        "model": "core.paymentstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Неоплачено"
+        }
+    },
+    {
+        "model": "core.paymentstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Оплачено"
+        }
+    },
+    {
+        "model": "core.paymentstatus",
+        "pk": 3,
+        "fields": {
+            "name": "Просрочено"
+        }
+    },
+    {
+        "model": "core.transactionstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Успешно"
+        }
+    },
+    {
+        "model": "core.transactionstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Ошибка"
+        }
+    },
+    {
+        "model": "core.transactionstatus",
+        "pk": 3,
+        "fields": {
+            "name": "Отменено"
+        }
+    },
+    {
+        "model": "core.transactiontype",
+        "pk": 1,
+        "fields": {
+            "name": "Погашение"
+        }
+    },
+    {
+        "model": "core.transactiontype",
+        "pk": 2,
+        "fields": {
+            "name": "Пополнение"
+        }
+    },
+    {
+        "model": "core.transactiontype",
+        "pk": 3,
+        "fields": {
+            "name": "Выплата"
+        }
+    }
+]
