@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Contact(models.Model):
-    name = models.CharField(max_length=255, verbose_name="ФИО")
+    name = models.CharField(max_length=1000, verbose_name="ФИО")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     address = models.TextField(verbose_name="Адрес")
     passport_series = models.CharField(max_length=10, verbose_name="Серия паспорта")
@@ -45,7 +45,8 @@ class Manager(AbstractUser):
         verbose_name_plural = "Менеджеры"
 
     def __str__(self):
-        return f"{self.contact.name} ({self.username})"
+        contact_name = self.contact.name if self.contact else "Без контакта"
+        return f"{contact_name} ({self.username})"
 
 
 class Role(models.Model):
@@ -83,7 +84,7 @@ class Product(models.Model):
         verbose_name_plural = "Продукты"
 
     def __str__(self):
-        return f"{self.Meta.verbose_name} ID{self.id} - {self.amount} руб на {self.duration} месяцев под {self.interest_rate}% годовых"
+        return f"{self._meta.verbose_name} ID{self.id} - {self.amount} руб на {self.duration} месяцев под {self.interest_rate}% годовых"
 
 
 class PaymentStatus(models.Model):
@@ -145,4 +146,4 @@ class Transaction(models.Model):
         verbose_name_plural = "Транзакции"
 
     def __str__(self):
-        return f"{self.Meta.verbose_name} ID{self.id} ({self.status.name})"
+        return f"{self._meta.verbose_name} ID{self.id} ({self.status.name})"

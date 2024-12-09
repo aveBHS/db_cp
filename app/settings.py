@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'core.Manager'
 # Application definition
 
 INSTALLED_APPS = [
