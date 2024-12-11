@@ -15,6 +15,11 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
+    def has_delete_permission(self, request, obj=None):
+        if not request.user.is_superuser:
+            return False
+        return super().has_delete_permission(request, obj)
+
     search_fields = [
         'contact__name',
         'contact__phone',
@@ -67,6 +72,19 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+
+    readonly_fields = ['client', 'type', 'amount', 'interest_rate', 'duration', 'created_at']
+
+    def get_readonly_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return ['client', 'type', 'amount', 'interest_rate', 'duration', 'created_at']
+        return super().get_readonly_fields(request, obj)
+
+    def has_delete_permission(self, request, obj=None):
+        if not request.user.is_superuser:
+            return False
+        return super().has_delete_permission(request, obj)
+
     search_fields = [
         'id',
         'client__id',
@@ -77,8 +95,8 @@ class ProductAdmin(admin.ModelAdmin):
         'passport_full',
         'passport_full_s',
     ]
-    list_display = ['id', 'type', 'client', 'amount', 'interest_rate', 'duration', 'created_at']
-    list_filter = ['type', 'created_at']
+    list_display = ['id', 'type', 'status', 'client', 'amount', 'interest_rate', 'duration', 'created_at']
+    list_filter = ['type', 'status', 'created_at']
 
     def get_search_results(self, request, queryset, search_term):
         if search_term:
@@ -130,6 +148,19 @@ class PaymentScheduleAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
+
+    readonly_fields = ['client', 'product', 'amount', 'type', 'date']
+
+    def get_readonly_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return ['client', 'product', 'amount', 'type', 'date']
+        return super().get_readonly_fields(request, obj)
+
+    def has_delete_permission(self, request, obj=None):
+        if not request.user.is_superuser:
+            return False
+        return super().has_delete_permission(request, obj)
+
     search_fields = [
         'client__contact__name',
         'client__contact__phone',
@@ -160,6 +191,7 @@ class TransactionAdmin(admin.ModelAdmin):
 
 admin.site.register(Role)
 admin.site.register(ProductType)
+admin.site.register(ProductStatus)
 admin.site.register(PaymentStatus)
 admin.site.register(TransactionStatus)
 admin.site.register(TransactionType)

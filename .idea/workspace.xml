@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Основные модели">
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Фильтры админки">
+      <change afterPath="$PROJECT_DIR$/core/migrations/0003_productstatus.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0004_product_status.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/fixtures/initial_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/fixtures/initial_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;aveBHS&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/aveBHS/db_cp&quot;,
+    &quot;accountId&quot;: &quot;417ec7e9-d482-470a-82b5-13b5e17ca16d&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -115,7 +126,10 @@
       <workItem from="1733148916492" duration="11263000" />
       <workItem from="1733473723811" duration="1926000" />
       <workItem from="1733504303294" duration="649000" />
-      <workItem from="1733749770396" duration="6607000" />
+      <workItem from="1733749770396" duration="7255000" />
+      <workItem from="1733766961298" duration="164000" />
+      <workItem from="1733903992576" duration="3296000" />
+      <workItem from="1733916250116" duration="3328000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -141,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733078054874</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Фильтры админки">
+      <option name="closed" value="true" />
+      <created>1733759015983</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733759015983</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +172,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
     <MESSAGE value="Основные модели" />
-    <option name="LAST_COMMIT_MESSAGE" value="Основные модели" />
+    <MESSAGE value="Фильтры админки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фильтры админки" />
   </component>
 </project>

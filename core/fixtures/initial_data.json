@@ -89,5 +89,19 @@
         "fields": {
             "name": "Выплата"
         }
+    },
+    {
+        "model": "core.productstatus",
+        "pk": 1,
+        "fields": {
+            "name": "Открыт"
+        }
+    },
+    {
+        "model": "core.productstatus",
+        "pk": 2,
+        "fields": {
+            "name": "Закрыт"
+        }
     }
 ]

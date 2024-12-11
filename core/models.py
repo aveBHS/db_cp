@@ -71,12 +71,24 @@ class ProductType(models.Model):
         return self.name
 
 
+class ProductStatus(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name="Статус")
+
+    class Meta:
+        verbose_name = "Статус продукта"
+        verbose_name_plural = "Статусы продуктов"
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Клиент")
     type = models.ForeignKey(ProductType, on_delete=models.CASCADE, verbose_name="Тип продукта")
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Сумма")
     interest_rate = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Процентная ставка")
     duration = models.IntegerField(verbose_name="Срок (в месяцах)")
+    status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT, verbose_name="Статус", blank=False)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     class Meta:
