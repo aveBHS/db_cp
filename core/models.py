@@ -64,6 +64,12 @@ class Role(models.Model):
 
 class ProductType(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название типа продукта")
+    behavior = models.CharField(
+        max_length=20,
+        choices=[('deposit', 'Депозит'), ('credit', 'Кредит')],
+        default='credit',
+        verbose_name="Поведение типа"
+    )
 
     class Meta:
         verbose_name = "Тип банковского продукта"
@@ -97,20 +103,31 @@ class Product(models.Model):
         is_new = self.pk is None
         super().save(*args, **kwargs)
         if is_new:
-            for month in range(1, self.duration + 1):
-                PaymentSchedule.objects.create(
-                    product=self,
-                    amount=(self.amount * (1 + (self.interest_rate / 100))) / self.duration,
-                    scheduled_date=date.today() + timedelta(days=30 * month),
-                    status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
-                )
+            if self.type.behavior == 'deposit':
+                profit = (self.amount * (self.interest_rate / 100)) / self.duration
+                for month in range(1, self.duration + 1):
+                    PaymentSchedule.objects.create(
+                        product=self,
+                        amount=profit + (self.amount if month == self.duration else 0),
+                        scheduled_date=date.today() + timedelta(days=30 * month),
+                        status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
+                    )
+
+            else:
+                for month in range(1, self.duration + 1):
+                    PaymentSchedule.objects.create(
+                        product=self,
+                        amount=(self.amount * (1 + (self.interest_rate / 100))) / self.duration,
+                        scheduled_date=date.today() + timedelta(days=30 * month),
+                        status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
+                    )
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
 
     def __str__(self):
-        return f"{self._meta.verbose_name} ID{self.id} - {self.amount} руб на {self.duration} месяцев под {self.interest_rate}% годовых"
+        return f"{self.type.name if self.type else self._meta.verbose_name} ID{self.id} - {self.amount} руб на {self.duration} месяцев под {self.interest_rate}% годовых"
 
 
 class PaymentStatus(models.Model):

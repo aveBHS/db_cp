@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Фикстуры групп">
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Инлайн вывод графика платежей в продукте">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/fixtures/initial_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/fixtures/initial_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +127,7 @@
       <workItem from="1733903992576" duration="3296000" />
       <workItem from="1733916250116" duration="3328000" />
       <workItem from="1733928253571" duration="4007000" />
-      <workItem from="1733991968957" duration="5535000" />
+      <workItem from="1733991968957" duration="6453000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -179,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733948705652</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Инлайн вывод графика платежей в продукте">
+      <option name="closed" value="true" />
+      <created>1734000875464</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734000875464</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,17 +197,7 @@
     <MESSAGE value="Фильтры админки" />
     <MESSAGE value="Ограничение редактирования записей менеджерами" />
     <MESSAGE value="Фикстуры групп" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикстуры групп" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/core/models.py</url>
-          <line>98</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Инлайн вывод графика платежей в продукте" />
+    <option name="LAST_COMMIT_MESSAGE" value="Инлайн вывод графика платежей в продукте" />
   </component>
 </project>
