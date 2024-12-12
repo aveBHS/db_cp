@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Фильтры админки">
-      <change afterPath="$PROJECT_DIR$/core/migrations/0003_productstatus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/migrations/0004_product_status.py" afterDir="false" />
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Фикстуры групп">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/fixtures/initial_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/fixtures/initial_data.json" afterDir="false" />
@@ -130,6 +128,8 @@
       <workItem from="1733766961298" duration="164000" />
       <workItem from="1733903992576" duration="3296000" />
       <workItem from="1733916250116" duration="3328000" />
+      <workItem from="1733928253571" duration="4007000" />
+      <workItem from="1733991968957" duration="5535000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -163,7 +163,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733759015983</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ограничение редактирования записей менеджерами">
+      <option name="closed" value="true" />
+      <created>1733948687165</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733948687165</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Фикстуры групп">
+      <option name="closed" value="true" />
+      <created>1733948705652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733948705652</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +189,19 @@
     <MESSAGE value="Init" />
     <MESSAGE value="Основные модели" />
     <MESSAGE value="Фильтры админки" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фильтры админки" />
+    <MESSAGE value="Ограничение редактирования записей менеджерами" />
+    <MESSAGE value="Фикстуры групп" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикстуры групп" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/core/models.py</url>
+          <line>98</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -91,6 +93,18 @@ class Product(models.Model):
     status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT, verbose_name="Статус", blank=False)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if is_new:
+            for month in range(1, self.duration + 1):
+                PaymentSchedule.objects.create(
+                    product=self,
+                    amount=(self.amount * (1 + (self.interest_rate / 100))) / self.duration,
+                    scheduled_date=date.today() + timedelta(days=30 * month),
+                    status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
+                )
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
@@ -121,6 +135,9 @@ class PaymentSchedule(models.Model):
     class Meta:
         verbose_name = "График платежей"
         verbose_name_plural = "Графики платежей"
+
+    def __str__(self):
+        return f"Платеж {self.amount} руб. на {self.scheduled_date}"
 
 
 class TransactionStatus(models.Model):

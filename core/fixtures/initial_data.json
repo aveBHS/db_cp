@@ -31,21 +31,21 @@
         "model": "core.paymentstatus",
         "pk": 1,
         "fields": {
-            "name": "Неоплачено"
+            "name": "Назначен"
         }
     },
     {
         "model": "core.paymentstatus",
         "pk": 2,
         "fields": {
-            "name": "Оплачено"
+            "name": "Оплачен"
         }
     },
     {
         "model": "core.paymentstatus",
         "pk": 3,
         "fields": {
-            "name": "Просрочено"
+            "name": "Просрочен"
         }
     },
     {
@@ -73,19 +73,12 @@
         "model": "core.transactiontype",
         "pk": 1,
         "fields": {
-            "name": "Погашение"
-        }
-    },
-    {
-        "model": "core.transactiontype",
-        "pk": 2,
-        "fields": {
             "name": "Пополнение"
         }
     },
     {
         "model": "core.transactiontype",
-        "pk": 3,
+        "pk": 2,
         "fields": {
             "name": "Выплата"
         }
