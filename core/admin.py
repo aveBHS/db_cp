@@ -17,6 +17,20 @@ admin.site.register(Manager, ManagerAdmin)
 class ContactAdmin(admin.ModelAdmin):
     search_fields = ['name', 'phone', 'passport_series', 'passport_number']
 
+class ProductInline(admin.TabularInline):
+    model = Product
+    extra = 0
+    can_delete = False
+    readonly_fields = ['type', 'status', 'amount', 'interest_rate', 'duration', 'open_product']
+
+    def open_product(self, obj):
+        url = reverse('admin:core_product_change', args=[obj.id])
+        return format_html(
+            '<a class="button" href="{}" style="background-color: #007bff; color: white; padding: 5px 10px; text-decoration: none;">Открыть</a>',
+            url
+        )
+    open_product.short_description = "Действия"
+
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
@@ -24,6 +38,7 @@ class ClientAdmin(admin.ModelAdmin):
             return False
         return super().has_delete_permission(request, obj)
 
+    inlines = [ProductInline]
     search_fields = [
         'contact__name',
         'contact__phone',
