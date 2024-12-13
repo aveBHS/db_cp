@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>График платежей по договору №{{ product_id }}</h1>
+    <p><b>Клиент</b>: {{ client_name }}</p>
+    <p><b>Контактный телефон</b>: {{ client_phone }}</p>
+    <p><b>Сумма {{ product_type }}а</b>: {{ product_amount }}₽</p>
+    <p><b>Процентная ставка</b>: {{ interest_rate }}% годовых</p>
+    <p><b>Начисления</b>: {{ interest_amount }}₽</p>
+    <p><b>Срок договора</b>: {{ product_duration }} месяца(ев)</p>
+    <table>
+        <thead>
+            <tr>
+                {% for header in data[0] %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data[1:] %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

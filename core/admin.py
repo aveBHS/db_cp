@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib import admin
 from django.utils.html import format_html
 from django.contrib.auth.admin import UserAdmin
+from django.utils.safestring import mark_safe
 
 class ManagerAdmin(UserAdmin):
     model = Manager
@@ -98,7 +99,7 @@ class PaymentScheduleInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [PaymentScheduleInline]
-    readonly_fields_on_update = ['client', 'type', 'amount', 'interest_rate', 'duration', 'created_at']
+    readonly_fields_on_update = ['client', 'type', 'amount', 'interest_rate', 'duration', 'created_at', 'download_schedule']
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:
@@ -138,6 +139,16 @@ class ProductAdmin(admin.ModelAdmin):
             )
         return super().get_search_results(request, queryset, search_term)
 
+    def download_schedule(self, obj):
+        if obj.pk:
+            return mark_safe(f"""
+                <a class="button" href="{reverse('product_pdf_report', args=[obj.pk])}" style="margin-bottom: 10px;">
+                    Скачать график платежей в PDF отчете</a><br><br>
+                <a class="button" href="{reverse('product_csv_report', args=[obj.pk])}" style="margin-bottom: 10px;">
+                Скачать график платежей в CSV таблице</a>
+            """)
+        return None
+    download_schedule.short_description = "Сформировать отчет"
 
 @admin.register(PaymentSchedule)
 class PaymentScheduleAdmin(admin.ModelAdmin):

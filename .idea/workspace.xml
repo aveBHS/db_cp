@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Бекапер БД">
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Генерация отчета по графику платежей в PDF">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/backup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +53,14 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "Django Server.course_project.executor": "Debug",
-    "Python.backup.executor": "Run",
+    "Python.backup.executor": "Debug",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/BHS/PycharmProjects/course_project/core/templates/core",
+    "last_opened_file_path": "C:/Users/BHS/PycharmProjects/course_project/core",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,13 +72,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\BHS\PycharmProjects\course_project\core" />
       <recent name="C:\Users\BHS\PycharmProjects\course_project\core\templates\core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\BHS\PycharmProjects\course_project" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.backup">
+  <component name="RunManager" selected="Django Server.course_project">
     <configuration name="backup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="course_project" />
       <option name="ENV_FILES" value="" />
@@ -165,7 +166,7 @@
       <workItem from="1734024337950" duration="5947000" />
       <workItem from="1734080029630" duration="195000" />
       <workItem from="1734082504190" duration="4825000" />
-      <workItem from="1734091937114" duration="7267000" />
+      <workItem from="1734091937114" duration="17330000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -271,7 +272,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734098927416</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Автоматический бекап данных каждый час">
+      <option name="closed" value="true" />
+      <created>1734100033862</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734100033862</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Генерация отчета по графику платежей в PDF">
+      <option name="closed" value="true" />
+      <created>1734122109741</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1734122109741</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,9 +317,11 @@
     <MESSAGE value="Использование транзакций при генерации графика платежей и связке платежа с графиком" />
     <MESSAGE value="Переход на PostgreSQL" />
     <MESSAGE value="Бекапер БД" />
-    <option name="LAST_COMMIT_MESSAGE" value="Бекапер БД" />
+    <MESSAGE value="Автоматический бекап данных каждый час" />
+    <MESSAGE value="Генерация отчета по графику платежей в PDF" />
+    <option name="LAST_COMMIT_MESSAGE" value="Генерация отчета по графику платежей в PDF" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/course_project$backup.coverage" NAME="backup Coverage Results" MODIFIED="1734099786029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/course_project$backup.coverage" NAME="backup Coverage Results" MODIFIED="1734099929699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

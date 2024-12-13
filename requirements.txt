@@ -3,3 +3,5 @@ psycopg2
 yadisk[sync_defaults]
 schedule
 requests
+pdfkit
+jinja2
