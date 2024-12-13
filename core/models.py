@@ -1,6 +1,4 @@
-from datetime import date, timedelta
-
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser
 
 
@@ -100,27 +98,12 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def save(self, *args, **kwargs):
-        is_new = self.pk is None
-        super().save(*args, **kwargs)
-        if is_new:
-            if self.type.behavior == 'deposit':
-                profit = (self.amount * (((self.interest_rate / 100) / 12) * self.duration)) / self.duration
-                for month in range(1, self.duration + 1):
-                    PaymentSchedule.objects.create(
-                        product=self,
-                        amount=profit + (self.amount if month == self.duration else 0),
-                        scheduled_date=date.today() + timedelta(days=30 * month),
-                        status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
-                    )
-
-            else:
-                for month in range(1, self.duration + 1):
-                    PaymentSchedule.objects.create(
-                        product=self,
-                        amount=(self.amount * (1 + (((self.interest_rate / 100) / 12) * self.duration))) / self.duration,
-                        scheduled_date=date.today() + timedelta(days=30 * month),
-                        status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
-                    )
+        with transaction.atomic():
+            is_new = self.pk is None
+            super().save(*args, **kwargs)
+            if is_new:
+                from core.utils import gen_payment_schedule
+                gen_payment_schedule(self)
 
     class Meta:
         verbose_name = "Продукт"

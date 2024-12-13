@@ -1,5 +1,6 @@
 from .models import *
 
+from django.db import transaction
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
 from django.urls import reverse
@@ -231,19 +232,20 @@ class TransactionAdmin(admin.ModelAdmin):
         return super().add_view(request, form_url, extra_context)
 
     def save_model(self, request, obj, form, change):
-        super().save_model(request, obj, form, change)
+        with transaction.atomic():
+            super().save_model(request, obj, form, change)
 
-        payment_schedule_id = request.session.pop('payment_schedule_id', None)
-        if payment_schedule_id:
-            try:
-                payment_schedule = PaymentSchedule.objects.get(id=payment_schedule_id)
-                payment_schedule.transaction = obj
-                payment_schedule.status = PaymentStatus.objects.get_or_create(
-                    name="Просрочен" if obj.date.date() > payment_schedule.scheduled_date else "Оплачен"
-                )[0]
-                payment_schedule.save()
-            except PaymentSchedule.DoesNotExist:
-                pass
+            payment_schedule_id = request.session.pop('payment_schedule_id', None)
+            if payment_schedule_id:
+                try:
+                    payment_schedule = PaymentSchedule.objects.get(id=payment_schedule_id)
+                    payment_schedule.transaction = obj
+                    payment_schedule.status = PaymentStatus.objects.get_or_create(
+                        name="Просрочен" if obj.date.date() > payment_schedule.scheduled_date else "Оплачен"
+                    )[0]
+                    payment_schedule.save()
+                except PaymentSchedule.DoesNotExist:
+                    pass
 
 admin.site.register(Role)
 admin.site.register(ProductType)
