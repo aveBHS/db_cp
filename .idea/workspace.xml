@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Новая логика создания выплат по депозиту">
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Использование транзакций при генерации графика платежей и связке платежа с графиком">
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -129,7 +130,10 @@
       <workItem from="1733928253571" duration="4007000" />
       <workItem from="1733991968957" duration="7663000" />
       <workItem from="1734011323982" duration="2999000" />
-      <workItem from="1734024337950" duration="4299000" />
+      <workItem from="1734024337950" duration="5947000" />
+      <workItem from="1734080029630" duration="195000" />
+      <workItem from="1734082504190" duration="4825000" />
+      <workItem from="1734091937114" duration="2553000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -195,11 +199,46 @@
       <option name="project" value="LOCAL" />
       <updated>1734001594882</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Фикс расчета процентной ставки">
+      <option name="closed" value="true" />
+      <created>1734076322215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734076322215</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Использование транзакций при генерации графика платежей и связке платежа с графиком">
+      <option name="closed" value="true" />
+      <created>1734094403360</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734094403360</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Использование транзакций при генерации графика платежей и связке платежа с графиком">
+      <option name="closed" value="true" />
+      <created>1734094656155</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734094656155</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
@@ -209,6 +248,8 @@
     <MESSAGE value="Фикстуры групп" />
     <MESSAGE value="Инлайн вывод графика платежей в продукте" />
     <MESSAGE value="Новая логика создания выплат по депозиту" />
-    <option name="LAST_COMMIT_MESSAGE" value="Новая логика создания выплат по депозиту" />
+    <MESSAGE value="Фикс расчета процентной ставки" />
+    <MESSAGE value="Использование транзакций при генерации графика платежей и связке платежа с графиком" />
+    <option name="LAST_COMMIT_MESSAGE" value="Использование транзакций при генерации графика платежей и связке платежа с графиком" />
   </component>
 </project>
