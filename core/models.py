@@ -104,7 +104,7 @@ class Product(models.Model):
         super().save(*args, **kwargs)
         if is_new:
             if self.type.behavior == 'deposit':
-                profit = (self.amount * (self.interest_rate / 100)) / self.duration
+                profit = (self.amount * (((self.interest_rate / 100) / 12) * self.duration)) / self.duration
                 for month in range(1, self.duration + 1):
                     PaymentSchedule.objects.create(
                         product=self,
@@ -117,7 +117,7 @@ class Product(models.Model):
                 for month in range(1, self.duration + 1):
                     PaymentSchedule.objects.create(
                         product=self,
-                        amount=(self.amount * (1 + (self.interest_rate / 100))) / self.duration,
+                        amount=(self.amount * (1 + (((self.interest_rate / 100) / 12) * self.duration))) / self.duration,
                         scheduled_date=date.today() + timedelta(days=30 * month),
                         status=PaymentStatus.objects.get_or_create(name="Назначен")[0]
                     )

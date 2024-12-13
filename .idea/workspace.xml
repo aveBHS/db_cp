@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Инлайн вывод графика платежей в продукте">
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Новая логика создания выплат по депозиту">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
     </list>
@@ -127,7 +127,9 @@
       <workItem from="1733903992576" duration="3296000" />
       <workItem from="1733916250116" duration="3328000" />
       <workItem from="1733928253571" duration="4007000" />
-      <workItem from="1733991968957" duration="6453000" />
+      <workItem from="1733991968957" duration="7663000" />
+      <workItem from="1734011323982" duration="2999000" />
+      <workItem from="1734024337950" duration="4299000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -185,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734000875464</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Новая логика создания выплат по депозиту">
+      <option name="closed" value="true" />
+      <created>1734001594882</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734001594882</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +208,7 @@
     <MESSAGE value="Ограничение редактирования записей менеджерами" />
     <MESSAGE value="Фикстуры групп" />
     <MESSAGE value="Инлайн вывод графика платежей в продукте" />
-    <option name="LAST_COMMIT_MESSAGE" value="Инлайн вывод графика платежей в продукте" />
+    <MESSAGE value="Новая логика создания выплат по депозиту" />
+    <option name="LAST_COMMIT_MESSAGE" value="Новая логика создания выплат по депозиту" />
   </component>
 </project>
