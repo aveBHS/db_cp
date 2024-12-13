@@ -1,5 +1,7 @@
 import os
+import time
 import yadisk
+import schedule
 import datetime
 import subprocess
 from app.settings import DATABASES
@@ -28,7 +30,7 @@ def get_dump(host: str, port: int, username: str, password: str, db_name: str):
         raise Exception(f"Can't create dump: {e}")
 
 
-if __name__ == "__main__":
+def make_backup():
     cloud_client = yadisk.Client(YA_DISK_CONFIG['app_id'], YA_DISK_CONFIG['app_secret'], YA_DISK_CONFIG['token'])
     config = DATABASES['default']
 
@@ -40,3 +42,14 @@ if __name__ == "__main__":
     link = cloud_client.upload(output_file, f"{YA_DISK_CONFIG['backup_path']}/{output_file}")
     print("Dump successful uploaded to Yandex.Disk -> ", link.href)
     os.remove(output_file)
+
+
+if __name__ == "__main__":
+    print("Making first backup force...")
+    make_backup()
+
+    print("\nBackup scheduler started")
+    schedule.every(1).hours.do(make_backup)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

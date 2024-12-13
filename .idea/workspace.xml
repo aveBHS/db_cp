@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Переход на PostgreSQL">
-      <change afterPath="$PROJECT_DIR$/backup.py" afterDir="false" />
+    <list default="true" id="b39ba1b6-7634-44fb-a9aa-4238b99f1887" name="Changes" comment="Бекапер БД">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/backup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "Django Server.course_project.executor": "Debug",
-    "Python.backup.executor": "Debug",
+    "Python.backup.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
@@ -165,7 +165,7 @@
       <workItem from="1734024337950" duration="5947000" />
       <workItem from="1734080029630" duration="195000" />
       <workItem from="1734082504190" duration="4825000" />
-      <workItem from="1734091937114" duration="6310000" />
+      <workItem from="1734091937114" duration="7267000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -263,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734095399744</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Бекапер БД">
+      <option name="closed" value="true" />
+      <created>1734098927416</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1734098927416</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,9 +299,10 @@
     <MESSAGE value="Фикс расчета процентной ставки" />
     <MESSAGE value="Использование транзакций при генерации графика платежей и связке платежа с графиком" />
     <MESSAGE value="Переход на PostgreSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переход на PostgreSQL" />
+    <MESSAGE value="Бекапер БД" />
+    <option name="LAST_COMMIT_MESSAGE" value="Бекапер БД" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/course_project$backup.coverage" NAME="backup Coverage Results" MODIFIED="1734097508053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/course_project$backup.coverage" NAME="backup Coverage Results" MODIFIED="1734099786029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
