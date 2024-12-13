@@ -142,9 +142,9 @@ class ProductAdmin(admin.ModelAdmin):
     def download_schedule(self, obj):
         if obj.pk:
             return mark_safe(f"""
-                <a class="button" href="{reverse('product_pdf_report', args=[obj.pk])}" style="margin-bottom: 10px;">
+                <a class="button" href="{reverse('product_report', args=['pdf', obj.pk])}" style="margin-bottom: 10px;">
                     Скачать график платежей в PDF отчете</a><br><br>
-                <a class="button" href="{reverse('product_csv_report', args=[obj.pk])}" style="margin-bottom: 10px;">
+                <a class="button" href="{reverse('product_report', args=['csv', obj.pk])}" style="margin-bottom: 10px;">
                 Скачать график платежей в CSV таблице</a>
             """)
         return None

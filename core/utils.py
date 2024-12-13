@@ -78,3 +78,24 @@ def generate_payment_schedule_pdf(product: Product, filename: str):
         interest_amount=data['interest_amount']
     ), filename, configuration=config)
     return filename
+
+def generate_payment_schedule_csv(product: Product, filename: str):
+    data = get_payment_schedule_table(product)
+    extra_data = [
+        [f"График платежей по договору №{product.id}"],
+        ["Клиент", product.client.contact.name],
+        ["Контактный телефон", str(product.client.contact.phone)],
+        [f"Сумма {PRODUCT_TYPES[product.type.behavior]}а", f"{product.amount}₽"],
+        ["Процентная ставка", f"{product.interest_rate}% годовых"],
+        ["Начисления", f"{data['interest_amount']}₽</p>"],
+        ["Срок договора", f"{product.duration} месяца(ев)"],
+    ]
+
+    csv_data = []
+    for row in [*extra_data, *data['table']]:
+        csv_data.append("\t".join([str(el) for el in row]))
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("\n".join(csv_data))
+
+    return filename
