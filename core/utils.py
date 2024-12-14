@@ -99,3 +99,6 @@ def generate_payment_schedule_csv(product: Product, filename: str):
         f.write("\n".join(csv_data))
 
     return filename
+
+def check_permission(permission, user):
+    return permission in [e.codename for e in list(user.get_user_permissions())]

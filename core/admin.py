@@ -9,6 +9,9 @@ from django.utils.html import format_html
 from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 
+from .utils import check_permission
+
+
 class ManagerAdmin(UserAdmin):
     model = Manager
     list_display = ['username', 'contact', 'role']
@@ -228,7 +231,9 @@ class TransactionAdmin(admin.ModelAdmin):
 
     def get_fields(self, request, obj=None):
         base_fields = super().get_fields(request, obj)
-        return base_fields + (['date', 'approved_status'] if obj and obj.pk else [])
+        return base_fields + (
+            ['date', 'approved_status'] if obj and obj.pk else []
+        ) + (['approve_buttons_editor'] if check_permission('approve_transaction', request.user) else [])
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:
@@ -253,7 +258,13 @@ class TransactionAdmin(admin.ModelAdmin):
     list_filter = ['type', 'status', 'date', 'approved']
 
     def get_list_display(self, request, obj=None):
-        return self.list_display + (['approve_buttons'] if request.user.has_perm('core.approve_transaction') else [])
+        return self.list_display + (['approve_buttons'] if check_permission('approve_transaction', request.user) else [])
+
+    def approve_buttons_editor(self, obj):
+        if obj and obj.pk:
+            return mark_safe(self.approve_buttons(obj))
+        return "Недостаточно прав"
+    approve_buttons_editor.short_description = "Одобрение транзакции"
 
     def approved_status(self, obj):
         if obj.approved is None:
@@ -266,7 +277,7 @@ class TransactionAdmin(admin.ModelAdmin):
             return format_html(
                 '<a class="button" style="margin-right: 5px" href="{}">Одобрить</a><a class="button" href="{}">Отклонить</a>',
                 reverse('transaction_approve', args=[obj.id]),
-                reverse('transaction_approve', args=[obj.id])
+                reverse('transaction_reject', args=[obj.id])
             )
         return "Обработано"
     approve_buttons.short_description = ""

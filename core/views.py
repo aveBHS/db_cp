@@ -1,14 +1,15 @@
 from datetime import date
 
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import permission_required, login_required
+from django.shortcuts import get_object_or_404
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import user_passes_test
 
-from core.models import Product, Transaction
-from core.utils import generate_payment_schedule_pdf, generate_payment_schedule_csv
+from core.models import Product, Transaction, TransactionStatus
+from core.utils import generate_payment_schedule_pdf, generate_payment_schedule_csv, check_permission
 
 
-@login_required
+@user_passes_test(lambda u: u.is_staff)
 def download_payment_schedule_report(request, product_id: int, _type: str):
     _type = _type.lower().strip()
     action = {
@@ -30,15 +31,18 @@ def download_payment_schedule_report(request, product_id: int, _type: str):
             return HttpResponse("Продукт не найден.", status=404)
     return HttpResponse("Некорректный формат файла.", status=400)
 
-@permission_required('core.approve_transaction', raise_exception=True)
-def approve_transaction(request, transaction_id, approve=True):
-    transaction = get_object_or_404(Transaction, id=transaction_id)
-    if transaction.approved is not None:
-        return HttpResponse("Транзакция уже обработана.", status=400)
 
-    transaction.approved = approve
-    if not approve:
-        transaction.status = Transaction.objects.get_or_create(name="Отменено")[0]
-    transaction.approved_by = request.user
-    transaction.save()
-    return redirect('admin:core_transaction_changelist')
+@user_passes_test(lambda u: u.is_staff)
+def approve_transaction(request, transaction_id, approve=True):
+    if check_permission('approve_transaction', request.user):
+        transaction = get_object_or_404(Transaction, id=transaction_id)
+        if transaction.approved is not None:
+            return HttpResponse("Транзакция уже обработана.", status=400)
+
+        transaction.approved = approve
+        if not approve:
+            transaction.status = TransactionStatus.objects.get_or_create(name="Отменено")[0]
+        transaction.approved_by = request.user
+        transaction.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    raise PermissionDenied()
