@@ -10,21 +10,23 @@
         "model": "core.role",
         "pk": 2,
         "fields": {
-            "name": "Администратор"
+            "name": "Старший менеджер"
         }
     },
     {
         "model": "core.producttype",
         "pk": 1,
         "fields": {
-            "name": "Кредит"
+            "name": "Кредит",
+            "behavior": "credit"
         }
     },
     {
         "model": "core.producttype",
         "pk": 2,
         "fields": {
-            "name": "Депозит"
+            "name": "Депозит",
+            "behavior":  "deposit"
         }
     },
     {
