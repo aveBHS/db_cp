@@ -11,6 +11,19 @@ from django.utils.safestring import mark_safe
 
 class ManagerAdmin(UserAdmin):
     model = Manager
+    list_display = ['username', 'contact', 'role']
+    list_filter = ['role']
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Личная информация', {'fields': ('contact',)}),
+        ('Роли и доступы', {'fields': ('role', 'groups', 'user_permissions')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'password1', 'password2', 'role'),
+        }),
+    )
 admin.site.register(Manager, ManagerAdmin)
 
 @admin.register(Contact)
@@ -74,7 +87,7 @@ class ClientAdmin(admin.ModelAdmin):
         parameter_name = 'birth_date'
 
         def lookups(self, request, model_admin):
-            return ()  # Ничего не возвращаем, так как ввод будет ручным
+            return ()
 
         def queryset(self, request, queryset):
             start_date = request.GET.get(f'{self.parameter_name}__gte')
@@ -209,8 +222,13 @@ class PaymentScheduleAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
+    readonly_fields = ['date']
+    fields = ['client', 'product', 'amount', 'type', 'status']
+    readonly_fields_on_update = ['client', 'product', 'amount', 'type', 'date', 'approved_status']
 
-    readonly_fields_on_update = ['client', 'product', 'amount', 'type', 'date']
+    def get_fields(self, request, obj=None):
+        base_fields = super().get_fields(request, obj)
+        return base_fields + (['date', 'approved_status'] if obj and obj.pk else [])
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:
@@ -231,8 +249,28 @@ class TransactionAdmin(admin.ModelAdmin):
         'product__id',
         'id',
     ]
-    list_display = ['id', 'client', 'product', 'amount', 'type', 'date', 'status']
-    list_filter = ['type', 'status', 'date']
+    list_display = ['id', 'product', 'amount', 'type', 'date', 'status', 'approved_status']
+    list_filter = ['type', 'status', 'date', 'approved']
+
+    def get_list_display(self, request, obj=None):
+        return self.list_display + (['approve_buttons'] if request.user.has_perm('core.approve_transaction') else [])
+
+    def approved_status(self, obj):
+        if obj.approved is None:
+            return "Ожидает"
+        return "Одобрена" if obj.approved else "Отклонена"
+    approved_status.short_description = "Проверка"
+
+    def approve_buttons(self, obj):
+        if obj.approved is None:
+            return format_html(
+                '<a class="button" style="margin-right: 5px" href="{}">Одобрить</a><a class="button" href="{}">Отклонить</a>',
+                reverse('transaction_approve', args=[obj.id]),
+                reverse('transaction_approve', args=[obj.id])
+            )
+        return "Обработано"
+    approve_buttons.short_description = ""
+
 
     def get_search_results(self, request, queryset, search_term):
         if search_term:

@@ -1,5 +1,5 @@
 from django.db import models, transaction
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Permission
 
 
 class Contact(models.Model):
@@ -44,6 +44,12 @@ class Manager(AbstractUser):
         verbose_name = "Менеджер"
         verbose_name_plural = "Менеджеры"
 
+    def get_role_permissions(self):
+        return self.role.permissions.all() if self.role else Permission.objects.none()
+
+    def get_user_permissions(self, obj=None):
+        return super().get_user_permissions(obj) | set(self.get_role_permissions())
+
     def __str__(self):
         contact_name = self.contact.name if self.contact else "Без контакта"
         return f"{contact_name} ({self.username})"
@@ -51,6 +57,7 @@ class Manager(AbstractUser):
 
 class Role(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название должности")
+    permissions = models.ManyToManyField(Permission, blank=True, verbose_name="Разрешения")
 
     class Meta:
         verbose_name = "Должность"
@@ -168,11 +175,24 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Сумма транзакции")
     type = models.ForeignKey(TransactionType, on_delete=models.SET_NULL, null=True, verbose_name="Тип транзакции")
     date = models.DateTimeField(auto_now_add=True, verbose_name="Дата транзакции")
+
+    approved_by = models.ForeignKey(
+        "Manager", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Одобрено старшим менеджером",
+        related_name="approved_transactions"
+    )
+    approved = models.BooleanField(
+        null=True,  # None = ожидает решения, True = одобрена, False = отклонена
+        choices=[(None, 'Ожидает'), (True, 'Одобрена'), (False, 'Отклонена')],
+        verbose_name="Одобрение"
+    )
+
     status = models.ForeignKey(TransactionStatus, on_delete=models.SET_NULL, null=True, verbose_name="Статус транзакции")
 
     class Meta:
         verbose_name = "Транзакция"
         verbose_name_plural = "Транзакции"
+
+        permissions = [("approve_transaction", "Может одобрять транзакции")]
 
     def __str__(self):
         return f"{self._meta.verbose_name} ID{self.id} ({self.status.name})"
