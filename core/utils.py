@@ -87,7 +87,7 @@ def generate_payment_schedule_csv(product: Product, filename: str):
         ["Контактный телефон", str(product.client.contact.phone)],
         [f"Сумма {PRODUCT_TYPES[product.type.behavior]}а", f"{product.amount}₽"],
         ["Процентная ставка", f"{product.interest_rate}% годовых"],
-        ["Начисления", f"{data['interest_amount']}₽</p>"],
+        ["Начисления", f"{data['interest_amount']}₽"],
         ["Срок договора", f"{product.duration} месяца(ев)"],
     ]
 
